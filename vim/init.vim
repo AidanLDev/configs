@@ -1,5 +1,19 @@
 " File should be located at C:/Users/<UserName>/AppData/Local/nvmim/init.vim
 
+" Set-up for vim-plug  https://github.com/junegunn/vim-plug
+
+" Run the curl command below to install vim-plug
+" sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+"        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+
+
+call plug#begin('~/local/share/nvim/plugged')
+" Use this shorthand notation to install Plugs <nameOfGitUser>/<nameOfPlugin>
+" For Example:
+" aidanldev/my-cool-plug
+
+call plug#end()
+
 " Enable syntax highlighting
 syntax enable
 
