@@ -10,8 +10,10 @@
 call plug#begin('~/local/share/nvim/plugged')
 " Use this shorthand notation to install Plugs <nameOfGitUser>/<nameOfPlugin>
 " For Example:
-" aidanldev/my-cool-plug
+" Plug aidanldev/my-cool-plug
+Plug 'terryma/vim-multiple-cursors'
 
+" TO install the above Plug's run :PlugInstall
 call plug#end()
 
 " Enable syntax highlighting
