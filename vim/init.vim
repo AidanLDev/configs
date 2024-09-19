@@ -7,7 +7,7 @@
 "        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
 
-call plug#begin('~/local/share/nvim/plugged')
+call plug#begin('~/.local/share/nvim/plugged')
 " Use this shorthand notation to install Plugs <nameOfGitUser>/<nameOfPlugin>
 " For Example:
 " Plug aidanldev/my-cool-plug
