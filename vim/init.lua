@@ -6,6 +6,12 @@ local Plug = vim.fn['plug#']
 vim.call('plug#begin')
 Plug('terryma/vim-multiple-cursors')
 
+-- Plugins for neo-tree https://github.com/nvim-neo-tree/neo-tree.nvim?tab=readme-ov-file
+Plug('nvim-lua/plenary.nvim')
+Plug('nvim-tree/nvim-web-devicons')
+Plug('MunifTanjim/nui.nvim')
+Plug('nvim-neo-tree/neo-tree.nvim')
+
 vim.call('plug#end')
 
 -- Enable syntax highlighting
