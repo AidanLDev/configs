@@ -4,7 +4,7 @@ local Plug = vim.fn['plug#']
 -- Plug set-up
 
 vim.call('plug#begin')
-Plug('~/.local/share/nvim/plugged')
+Plug('terryma/vim-multiple-cursors')
 
 vim.call('plug#end')
 
