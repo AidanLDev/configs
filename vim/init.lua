@@ -16,6 +16,9 @@ Plug('nvim-neo-tree/neo-tree.nvim')
 Plug ('nvim-lua/plenary.nvim')
 Plug("nvim-telescope/telescope.nvim")
 
+-- Vim Be Good, for practising vim stuff
+Plug ('ThePrimeagen/vim-be-good')
+
 vim.call('plug#end')
 
 -- Enable syntax highlighting
