@@ -12,6 +12,10 @@ Plug('nvim-tree/nvim-web-devicons')
 Plug('MunifTanjim/nui.nvim')
 Plug('nvim-neo-tree/neo-tree.nvim')
 
+-- Plugins for telescope.nvim (The fuzzy finder)
+Plug ('nvim-lua/plenary.nvim')
+Plug("nvim-telescope/telescope.nvim")
+
 vim.call('plug#end')
 
 -- Enable syntax highlighting
