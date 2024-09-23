@@ -60,3 +60,14 @@ The config file for tmux is `.tmux.cong` and it should live on the `/etc/` dir.
 After making changes to this file, tmux doesn't automatically read them so we need to source tmux with the tmux command mode:
 
 - `[prefix] : source-file ~./.tmux.conf`
+
+# Running commands outside of Tmux
+
+We can target our sessions with the `-t` flag, for example if we create a session called development
+
+- `tmux new -s development`
+  Then we can split a window like:
+- `tmux split-window -h -t development`
+  Now when we open the session `tmux attach -t development` we can see we have a window with two panes.
+
+# Scripting a Project Configuration
