@@ -33,6 +33,13 @@ We can divide sessions into panes
 - `[prefix] up, down, left, right` - Change pane in that direction
 - `[prefix] spacebar` - Cycle through pane layouts
 
+#### Resizing Panes
+
+- `[prefix] H` - Resize pane Left
+- `[prefix] J` - Resize pane Down
+- `[prefix] K` - Resize pane Up
+- `[prefix] L` - Resize pane Right
+
 #### Pane Layouts
 
 - `even-horizontal` - stacks all panes horizontally
