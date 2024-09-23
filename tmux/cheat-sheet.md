@@ -71,3 +71,8 @@ We can target our sessions with the `-t` flag, for example if we create a sessio
   Now when we open the session `tmux attach -t development` we can see we have a window with two panes.
 
 # Scripting a Project Configuration
+
+We can create bash scripts for tmux and run them by going to the dir and running ./<scriptName>.sh
+
+If you get a permission denied it usually means the script doesn't have execute permissions which can be fixed with:
+`chmod +x <scriptName>.sh`
