@@ -76,3 +76,11 @@ We can create bash scripts for tmux and run them by going to the dir and running
 
 If you get a permission denied it usually means the script doesn't have execute permissions which can be fixed with:
 `chmod +x <scriptName>.sh`
+
+# Using the tmuxinator package to manage tmux
+
+Tmuxinator gives us a nice environment for creating and managing tmux sessions.
+To install it first make sure you have ruby `ruby -v`, if not download it with `sudo apt-get install ruby`
+`gem install tmuxinator`
+
+- `tmuxinator open <projectName>` - Create a new tmuxinator project
