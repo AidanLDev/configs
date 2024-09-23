@@ -1,0 +1,12 @@
+# /home/aidan/.config/tmuxinator/development.yml
+
+name: development
+root: ~/
+
+windows:
+  - editor:
+      layout: main-horizontal
+      panes:
+        - nvim
+        -  #empty, will just run plain bash
+  - console: # empty
