@@ -131,4 +131,5 @@ alias pn=pnpm
 . "$HOME/.cargo/env"
 
 # Setting default editor
-export EDITOR=nvim
+export EDITOR="nvim"
+export VISUAL="nvim"
