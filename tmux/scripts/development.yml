@@ -9,4 +9,5 @@ windows:
       panes:
         - nvim
         -  #empty, will just run plain bash
+        -  #empty, will just run plain bash
   - console: # empty
