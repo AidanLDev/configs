@@ -19,6 +19,8 @@ Plug("nvim-telescope/telescope.nvim")
 -- Vim Be Good, for practising vim stuff
 Plug ('ThePrimeagen/vim-be-good')
 
+-- TODO: Go through this video and set-up the TS LSP https://www.youtube.com/watch?v=E5vzKgqQ8u0
+
 vim.call('plug#end')
 
 -- Enable syntax highlighting
