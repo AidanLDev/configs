@@ -75,3 +75,9 @@ vim.api.nvim_set_keymap('n', '<C-p>', ':bprevious<CR>', { noremap = true, silent
 -- Enable persistent undo
 vim.opt.undofile = true
 vim.opt.undodir = vim.fn.expand('$HOME/.config/nvim/undo')
+
+-- Set tabs as spaces AND set tab width to 2
+vim.cmd("set expandtab")
+vim.cmd("set tabstop = 2")
+vim.cmd("set softtabstop = 2")
+vim.cmd("set shiftwidth = 2")
