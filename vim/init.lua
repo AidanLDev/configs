@@ -19,6 +19,9 @@ Plug("nvim-telescope/telescope.nvim")
 -- Vim Be Good, for practising vim stuff
 Plug ('ThePrimeagen/vim-be-good')
 
+-- Catppucin - a nice colour scheme
+Plug ('catppuccin/nvim')
+
 -- TODO: Go through this video and set-up the TS LSP https://www.youtube.com/watch?v=E5vzKgqQ8u0
 
 vim.call('plug#end')
@@ -78,6 +81,6 @@ vim.opt.undodir = vim.fn.expand('$HOME/.config/nvim/undo')
 
 -- Set tabs as spaces AND set tab width to 2
 vim.cmd("set expandtab")
-vim.cmd("set tabstop = 2")
-vim.cmd("set softtabstop = 2")
-vim.cmd("set shiftwidth = 2")
+vim.cmd("set tabstop=2")
+vim.cmd("set softtabstop=2")
+vim.cmd("set shiftwidth=2")
