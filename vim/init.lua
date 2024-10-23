@@ -68,8 +68,8 @@ vim.cmd('filetype on')
 vim.cmd('filetype plugin on')
 vim.cmd('filetype indent on')
 
--- Set color scheme (you may need to install a color scheme first)
--- vim.cmd('colorscheme desert')
+-- Set color scheme 
+vim.cmd('colorscheme catppuccin')
 
 -- Map keys to switch between buffers
 vim.api.nvim_set_keymap('n', '<C-n>', ':bnext<CR>', { noremap = true, silent = true })
