@@ -23,6 +23,9 @@ Plug ('ThePrimeagen/vim-be-good')
 -- Catppucin - a nice colour scheme
 Plug ('catppuccin/nvim')
 
+-- Tree sitter
+Plug('nvim-treesitter/nvim-treesitter', { ['do'] = ':TSUpdate' })
+
 -- TODO: Go through this video and set-up the TS LSP https://www.youtube.com/watch?v=E5vzKgqQ8u0
 
 vim.call('plug#end')
@@ -90,3 +93,10 @@ vim.cmd("set shiftwidth=2")
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<C-p>', builtin.find_files, { desc = 'Telescope find files' })
 
+-- Treesitter Config
+local config = require("nvim-treesitter.configs")
+config.setup({
+  ensure_installed = { "lua", "javascript" },
+  highlight = { enabled = true },
+  indent = { enabled = true },
+})
