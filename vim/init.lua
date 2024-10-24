@@ -15,6 +15,7 @@ Plug('nvim-neo-tree/neo-tree.nvim')
 -- Plugins for telescope.nvim (The fuzzy finder)
 Plug ('nvim-lua/plenary.nvim')
 Plug("nvim-telescope/telescope.nvim")
+Plug('BurntSushi/ripgrep')
 
 -- Vim Be Good, for practising vim stuff
 Plug ('ThePrimeagen/vim-be-good')
@@ -84,3 +85,8 @@ vim.cmd("set expandtab")
 vim.cmd("set tabstop=2")
 vim.cmd("set softtabstop=2")
 vim.cmd("set shiftwidth=2")
+
+-- Telescope Config
+local builtin = require('telescope.builtin')
+vim.keymap.set('n', '<C-p>', builtin.find_files, { desc = 'Telescope find files' })
+
