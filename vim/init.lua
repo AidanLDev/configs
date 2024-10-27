@@ -92,6 +92,14 @@ vim.cmd("set shiftwidth=2")
 -- Telescope Config
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<C-p>', builtin.find_files, { desc = 'Telescope find files' })
+require("telescope").setup{
+  defaults = {
+    file_ignore_patterns = {
+      "node_modules"
+    }
+  }
+}
+
 
 -- Treesitter Config
 local config = require("nvim-treesitter.configs")
