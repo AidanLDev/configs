@@ -29,7 +29,10 @@ Plug('nvim-treesitter/nvim-treesitter', { ['do'] = ':TSUpdate' })
 -- NVIM-Lualine a nice nvim status bar
 Plug('nvim-lualine/lualine.nvim')
 
--- TODO: Go through this video and set-up the TS LSP https://www.youtube.com/watch?v=E5vzKgqQ8u0
+-- LSP Packages
+Plug('williamboman/mason.nvim')
+Plug('williamboman/mason-lspconfig.nvim')
+Plug('neovim/nvim-lspconfig')
 
 vim.call('plug#end')
 
@@ -121,4 +124,38 @@ require('lualine').setup({
     theme = 'dracula'
   }
 })
+
+-- LSP Config
+require('mason').setup()
+require('mason-lspconfig').setup({
+  ensure_installed = {
+    "lua_ls",
+    "css_variables",
+    "cssls",
+    "cssmodules_ls",
+    "tailwindcss",
+    "graphql",
+    "html",
+    "lwc_ls",
+    "stimulus_ls",
+    "templ",
+    "twiggy_language_server",
+    "tsp_server"
+  }
+})
+local lspconfig = require('lspconfig')
+lspconfig.lua_ls.setup({})
+lspconfig.css_variables.setup({})
+lspconfig.cssls.setup({})
+lspconfig.cssmodules_ls.setup({})
+lspconfig.tailwindcss.setup({})
+lspconfig.graphql.setup({})
+lspconfig.html.setup({})
+lspconfig.lwc_ls.setup({})
+lspconfig.stimulus_ls.setup({})
+lspconfig.templ.setup({})
+lspconfig.twiggy_language_server.setup({})
+lspconfig.tsp_server.setup({})
+
+vim.keymap.set('n', 'K', vim.lsp.buf.hover, {})
 
