@@ -26,6 +26,9 @@ Plug ('catppuccin/nvim')
 -- Tree sitter
 Plug('nvim-treesitter/nvim-treesitter', { ['do'] = ':TSUpdate' })
 
+-- NVIM-Lualine a nice nvim status bar
+Plug('nvim-lualine/lualine.nvim')
+
 -- TODO: Go through this video and set-up the TS LSP https://www.youtube.com/watch?v=E5vzKgqQ8u0
 
 vim.call('plug#end')
@@ -111,4 +114,11 @@ config.setup({
 
 -- Neo-tree config
 vim.keymap.set('n', '<C-b>', ':Neotree filesystem reveal right<CR>')
+
+-- Lualine config
+require('lualine').setup({
+  options = {
+    theme = 'dracula'
+  }
+})
 
