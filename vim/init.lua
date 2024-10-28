@@ -16,6 +16,7 @@ Plug('nvim-neo-tree/neo-tree.nvim')
 Plug ('nvim-lua/plenary.nvim')
 Plug("nvim-telescope/telescope.nvim")
 Plug('BurntSushi/ripgrep')
+Plug('nvim-telescope/telescope-ui-select.nvim')
 
 -- Vim Be Good, for practising vim stuff
 Plug ('ThePrimeagen/vim-be-good')
@@ -52,6 +53,9 @@ vim.opt.mouse = 'a'
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
+
+-- Set <leader> key binding to space (by default it's a backslash '\')
+vim.g.mapleader = ' '
 
 -- Enable auto-indentation
 vim.opt.autoindent = true
@@ -103,8 +107,15 @@ require("telescope").setup{
     file_ignore_patterns = {
       "node_modules"
     }
+  },
+  extentions = {
+    ["ui-select"] = {
+      require("telescope.themes").get_dropdown {}
+    }
   }
 }
+
+require('telescope').load_extension('ui-select')
 
 
 -- Treesitter Config
@@ -130,6 +141,8 @@ require('mason').setup()
 require('mason-lspconfig').setup({
   ensure_installed = {
     "lua_ls",
+    "ts_ls"
+    --[[
     "css_variables",
     "cssls",
     "cssmodules_ls",
@@ -140,11 +153,13 @@ require('mason-lspconfig').setup({
     "stimulus_ls",
     "templ",
     "twiggy_language_server",
-    "tsp_server"
+    --]]
   }
 })
 local lspconfig = require('lspconfig')
 lspconfig.lua_ls.setup({})
+lspconfig.ts_ls.setup({})
+--[[
 lspconfig.css_variables.setup({})
 lspconfig.cssls.setup({})
 lspconfig.cssmodules_ls.setup({})
@@ -155,7 +170,9 @@ lspconfig.lwc_ls.setup({})
 lspconfig.stimulus_ls.setup({})
 lspconfig.templ.setup({})
 lspconfig.twiggy_language_server.setup({})
-lspconfig.tsp_server.setup({})
+--]]
 
 vim.keymap.set('n', 'K', vim.lsp.buf.hover, {})
+vim.keymap.set('n', 'gd', vim.lsp.buf.definition, {})
+vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, {})
 
