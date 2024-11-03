@@ -105,7 +105,10 @@ vim.keymap.set('n', '<C-p>', builtin.find_files, { desc = 'Telescope find files'
 require("telescope").setup{
   defaults = {
     file_ignore_patterns = {
-      "node_modules"
+      "node_modules",
+      "dist",
+      "build",
+      ".next"
     }
   },
   extentions = {
