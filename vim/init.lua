@@ -1,44 +1,53 @@
 local vim = vim
-local Plug = vim.fn['plug#']
+local Plug = vim.fn["plug#"]
 
 -- Plug set-up
 
-vim.call('plug#begin')
-Plug('terryma/vim-multiple-cursors')
+vim.call("plug#begin")
+Plug("terryma/vim-multiple-cursors")
 
 -- Plugins for neo-tree https://github.com/nvim-neo-tree/neo-tree.nvim?tab=readme-ov-file
-Plug('nvim-lua/plenary.nvim')
-Plug('nvim-tree/nvim-web-devicons')
-Plug('MunifTanjim/nui.nvim')
-Plug('nvim-neo-tree/neo-tree.nvim')
+Plug("nvim-lua/plenary.nvim")
+Plug("nvim-tree/nvim-web-devicons")
+Plug("MunifTanjim/nui.nvim")
+Plug("nvim-neo-tree/neo-tree.nvim")
 
 -- Plugins for telescope.nvim (The fuzzy finder)
-Plug ('nvim-lua/plenary.nvim')
+Plug("nvim-lua/plenary.nvim")
 Plug("nvim-telescope/telescope.nvim")
-Plug('BurntSushi/ripgrep')
-Plug('nvim-telescope/telescope-ui-select.nvim')
+Plug("BurntSushi/ripgrep")
+Plug("nvim-telescope/telescope-ui-select.nvim")
 
 -- Vim Be Good, for practising vim stuff
-Plug ('ThePrimeagen/vim-be-good')
+Plug("ThePrimeagen/vim-be-good")
 
 -- Catppucin - a nice colour scheme
-Plug ('catppuccin/nvim')
+Plug("catppuccin/nvim")
 
 -- Tree sitter
-Plug('nvim-treesitter/nvim-treesitter', { ['do'] = ':TSUpdate' })
+Plug("nvim-treesitter/nvim-treesitter", { ["do"] = ":TSUpdate" })
 
 -- NVIM-Lualine a nice nvim status bar
-Plug('nvim-lualine/lualine.nvim')
+Plug("nvim-lualine/lualine.nvim")
 
--- LSP Packages
-Plug('williamboman/mason.nvim')
-Plug('williamboman/mason-lspconfig.nvim')
-Plug('neovim/nvim-lspconfig')
+-- LSP Package
+Plug("williamboman/mason.nvim")
+Plug("williamboman/mason-lspconfig.nvim")
+Plug("neovim/nvim-lspconfig")
 
-vim.call('plug#end')
+-- Formatting packages
+Plug("nvimtools/none-ls.nvim")
+
+-- Autocomplete and Snippet packages
+Plug("hrsh7th/nvim-cmp")
+Plug("L3MON4D3/LuaSnip")
+Plug("saadparwaiz1/cmp_luasnip")
+Plug("rafamadriz/friendly-snippets")
+
+vim.call("plug#end")
 
 -- Enable syntax highlighting
-vim.cmd('syntax enable')
+vim.cmd("syntax enable")
 
 -- Show line numbers
 vim.opt.number = true
@@ -47,7 +56,7 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 
 -- Enable mouse support
-vim.opt.mouse = 'a'
+vim.opt.mouse = "a"
 
 -- Set tab width to 4 spaces
 vim.opt.tabstop = 4
@@ -55,7 +64,7 @@ vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 
 -- Set <leader> key binding to space (by default it's a backslash '\')
-vim.g.mapleader = ' '
+vim.g.mapleader = " "
 
 -- Enable auto-indentation
 vim.opt.autoindent = true
@@ -72,26 +81,26 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
 -- Enable system clipboard
-vim.opt.clipboard:append('unnamedplus')
+vim.opt.clipboard:append("unnamedplus")
 
 -- Show matching brackets
 vim.opt.showmatch = true
 
 -- Enable file type detection
-vim.cmd('filetype on')
-vim.cmd('filetype plugin on')
-vim.cmd('filetype indent on')
+vim.cmd("filetype on")
+vim.cmd("filetype plugin on")
+vim.cmd("filetype indent on")
 
--- Set color scheme 
-vim.cmd('colorscheme catppuccin')
+-- Set color scheme
+vim.cmd("colorscheme catppuccin")
 
 -- Map keys to switch between buffers
-vim.api.nvim_set_keymap('n', '<C-n>', ':bnext<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<C-p>', ':bprevious<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<C-n>", ":bnext<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<C-p>", ":bprevious<CR>", { noremap = true, silent = true })
 
 -- Enable persistent undo
 vim.opt.undofile = true
-vim.opt.undodir = vim.fn.expand('$HOME/.config/nvim/undo')
+vim.opt.undodir = vim.fn.expand("$HOME/.config/nvim/undo")
 
 -- Set tabs as spaces AND set tab width to 2
 vim.cmd("set expandtab")
@@ -100,52 +109,51 @@ vim.cmd("set softtabstop=2")
 vim.cmd("set shiftwidth=2")
 
 -- Telescope Config
-local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<C-p>', builtin.find_files, { desc = 'Telescope find files' })
-require("telescope").setup{
-  defaults = {
-    file_ignore_patterns = {
-      "node_modules",
-      "dist",
-      "build",
-      ".next"
-    }
-  },
-  extentions = {
-    ["ui-select"] = {
-      require("telescope.themes").get_dropdown {}
-    }
-  }
-}
+local builtin = require("telescope.builtin")
+vim.keymap.set("n", "<C-p>", builtin.find_files, { desc = "Telescope find files" })
+require("telescope").setup({
+	defaults = {
+		file_ignore_patterns = {
+			"node_modules",
+			"dist",
+			"build",
+			".next",
+		},
+	},
+	extentions = {
+		["ui-select"] = {
+			require("telescope.themes").get_dropdown({}),
+		},
+	},
+})
 
-require('telescope').load_extension('ui-select')
-
+require("telescope").load_extension("ui-select")
 
 -- Treesitter Config
 local config = require("nvim-treesitter.configs")
 config.setup({
-  ensure_installed = { "lua", "javascript" },
-  highlight = { enabled = true },
-  indent = { enabled = true },
+	auto_install = true,
+	highlight = { enabled = true },
+	indent = { enabled = true },
 })
 
 -- Neo-tree config
-vim.keymap.set('n', '<C-b>', ':Neotree filesystem reveal right<CR>')
+vim.keymap.set("n", "<C-b>", ":Neotree filesystem reveal right<CR>")
 
 -- Lualine config
-require('lualine').setup({
-  options = {
-    theme = 'dracula'
-  }
+require("lualine").setup({
+	options = {
+		theme = "dracula",
+	},
 })
 
 -- LSP Config
-require('mason').setup()
-require('mason-lspconfig').setup({
-  ensure_installed = {
-    "lua_ls",
-    "ts_ls"
-    --[[
+require("mason").setup()
+require("mason-lspconfig").setup({
+	ensure_installed = {
+		"lua_ls",
+		"ts_ls",
+		--[[
     "css_variables",
     "cssls",
     "cssmodules_ls",
@@ -157,9 +165,9 @@ require('mason-lspconfig').setup({
     "templ",
     "twiggy_language_server",
     --]]
-  }
+	},
 })
-local lspconfig = require('lspconfig')
+local lspconfig = require("lspconfig")
 lspconfig.lua_ls.setup({})
 lspconfig.ts_ls.setup({})
 --[[
@@ -175,11 +183,53 @@ lspconfig.templ.setup({})
 lspconfig.twiggy_language_server.setup({})
 --]]
 
-vim.keymap.set('n', 'K', vim.lsp.buf.hover, {})
-vim.keymap.set('n', 'gd', vim.lsp.buf.definition, {})
-vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, {})
+vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
+vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
+vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, {})
 
 -- Keymap to format code using the lsp
-vim.keymap.set('n', '<leader>f', vim.lsp.buf.format)
-vim.cmd [[autocmd BufWritePre *.ts,*.tsx,*.js,*.jsx lua vim.lsp.buf.format()]]
+vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
+vim.cmd([[autocmd BufWritePre *.ts,*.tsx,*.js,*.jsx lua vim.lsp.buf.format()]])
 
+-- None ls set-up
+local null_ls = require("null-ls")
+null_ls.setup({
+	sources = {
+		null_ls.builtins.formatting.stylua,
+		null_ls.builtins.formatting.prettier,
+		null_ls.builtins.diagnostics.eslint_d,
+	},
+})
+
+
+vim.keymap.set("n", "<leader>pi", ":PlugInstall <CR>")
+
+-- CMP Set-up
+local cmp = require("cmp")
+require("luasnip.loaders.from_vscode").lazy_load()
+
+cmp.setup({
+    snippet = {
+      expand = function(args)
+        vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+        require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+      end,
+    },
+    window = {
+      completion = cmp.config.window.bordered(),
+      documentation = cmp.config.window.bordered(),
+    },
+    mapping = cmp.mapping.preset.insert({
+      ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+      ['<C-f>'] = cmp.mapping.scroll_docs(4),
+      ['<C-Space>'] = cmp.mapping.complete(),
+      ['<C-e>'] = cmp.mapping.abort(),
+      ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+    }),
+    sources = cmp.config.sources({
+      -- { name = 'nvim_lsp' },
+      { name = 'luasnip' }, -- For luasnip users.
+    }, {
+      { name = 'buffer' },
+    })
+  })
