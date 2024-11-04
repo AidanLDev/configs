@@ -43,6 +43,7 @@ Plug("hrsh7th/nvim-cmp")
 Plug("L3MON4D3/LuaSnip")
 Plug("saadparwaiz1/cmp_luasnip")
 Plug("rafamadriz/friendly-snippets")
+Plug("hrsh7th/cmp-nvim-lsp")
 
 vim.call("plug#end")
 
@@ -168,8 +169,13 @@ require("mason-lspconfig").setup({
 	},
 })
 local lspconfig = require("lspconfig")
-lspconfig.lua_ls.setup({})
-lspconfig.ts_ls.setup({})
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
+lspconfig.lua_ls.setup({
+  capabilities = capabilities
+})
+lspconfig.ts_ls.setup({
+  capabilities = capabilities
+})
 --[[
 lspconfig.css_variables.setup({})
 lspconfig.cssls.setup({})
