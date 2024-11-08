@@ -121,6 +121,11 @@ require("telescope").setup({
 			".next",
 		},
 	},
+  pickers = {
+    find_files = {
+      hidden = true
+    }
+  },
 	extentions = {
 		["ui-select"] = {
 			require("telescope.themes").get_dropdown({}),
@@ -140,6 +145,15 @@ config.setup({
 
 -- Neo-tree config
 vim.keymap.set("n", "<C-b>", ":Neotree filesystem reveal right<CR>")
+require("neo-tree").setup({
+  filesystem = {
+    filtered_items = {
+      visible = true,
+      hide_dotfiles = false,
+      hide_gitignored = true,
+    }
+  }
+})
 
 -- Lualine config
 require("lualine").setup({
