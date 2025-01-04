@@ -168,18 +168,7 @@ require("mason-lspconfig").setup({
 	ensure_installed = {
 		"lua_ls",
 		"ts_ls",
-		--[[
-    "css_variables",
-    "cssls",
-    "cssmodules_ls",
-    "tailwindcss",
-    "graphql",
-    "html",
-    "lwc_ls",
-    "stimulus_ls",
-    "templ",
-    "twiggy_language_server",
-    --]]
+    "rust_analyzer"
 	},
 })
 local lspconfig = require("lspconfig")
@@ -190,18 +179,8 @@ lspconfig.lua_ls.setup({
 lspconfig.ts_ls.setup({
   capabilities = capabilities
 })
---[[
-lspconfig.css_variables.setup({})
-lspconfig.cssls.setup({})
-lspconfig.cssmodules_ls.setup({})
-lspconfig.tailwindcss.setup({})
-lspconfig.graphql.setup({})
-lspconfig.html.setup({})
-lspconfig.lwc_ls.setup({})
-lspconfig.stimulus_ls.setup({})
-lspconfig.templ.setup({})
-lspconfig.twiggy_language_server.setup({})
---]]
+lspconfig.rust_analyzer.setup({})
+
 
 vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
 vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
