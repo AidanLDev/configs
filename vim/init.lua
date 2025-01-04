@@ -43,7 +43,6 @@ Plug("hrsh7th/nvim-cmp")
 Plug("L3MON4D3/LuaSnip")
 Plug("saadparwaiz1/cmp_luasnip")
 Plug("rafamadriz/friendly-snippets")
-Plug("hrsh7th/cmp-nvim-lsp")
 
 vim.call("plug#end")
 
@@ -121,11 +120,6 @@ require("telescope").setup({
 			".next",
 		},
 	},
-  pickers = {
-    find_files = {
-      hidden = true
-    }
-  },
 	extentions = {
 		["ui-select"] = {
 			require("telescope.themes").get_dropdown({}),
@@ -145,15 +139,6 @@ config.setup({
 
 -- Neo-tree config
 vim.keymap.set("n", "<C-b>", ":Neotree filesystem reveal right<CR>")
-require("neo-tree").setup({
-  filesystem = {
-    filtered_items = {
-      visible = true,
-      hide_dotfiles = false,
-      hide_gitignored = true,
-    }
-  }
-})
 
 -- Lualine config
 require("lualine").setup({
@@ -172,13 +157,8 @@ require("mason-lspconfig").setup({
 	},
 })
 local lspconfig = require("lspconfig")
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
-lspconfig.lua_ls.setup({
-  capabilities = capabilities
-})
-lspconfig.ts_ls.setup({
-  capabilities = capabilities
-})
+lspconfig.lua_ls.setup({})
+lspconfig.ts_ls.setup({})
 lspconfig.rust_analyzer.setup({})
 
 
@@ -196,7 +176,7 @@ null_ls.setup({
 	sources = {
 		null_ls.builtins.formatting.stylua,
 		null_ls.builtins.formatting.prettier,
-		null_ls.builtins.diagnostics.eslint_d,
+    null_ls.builtins.formatting.rustfmt,
 	},
 })
 
