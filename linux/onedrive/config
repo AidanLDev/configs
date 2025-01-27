@@ -1,0 +1,16 @@
+# Enable selective sync using sync_list files
+sync_list = "~/.config/onedrive/sync_list"
+
+# Set the directory where OneDrive files will be synced
+sync_dir = "~/OneDrive"
+
+# Enable files on-demand (similar to Windows' "Free up space")
+sync_dir_permissions = 700
+sync_dir_ownership = onedrive:onedrive
+skip_symlinks = yes
+
+# Skip specific files or patterns (optional)
+skip_file = "*.tmp|~*|*.log"
+
+# Log level (optional, for debugging)
+log_level = INFO
