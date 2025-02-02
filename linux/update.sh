@@ -1,8 +1,8 @@
 #!/bin/bash
-rm -rf /var/lib/dpkg/lock-frontend
-rm -rf /var/lib/dpkg/lock
-apt-get update
-apt-get upgrade -y
-apt-get dist-upgrade -y
-apt-get autoremove -y
-apt-get autoclean -y
+sudo rm -rf /var/lib/dpkg/lock-frontend
+sudo rm -rf /var/lib/dpkg/lock
+sudo apt-get update
+sudo apt-get upgrade -y
+sudo apt-get dist-upgrade -y
+sudo apt-get autoremove -y
+sudo apt-get autoclean -y
