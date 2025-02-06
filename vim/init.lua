@@ -153,7 +153,6 @@ require("mason").setup()
 require("mason-lspconfig").setup({
 	ensure_installed = {
 		"lua_ls",
-		"tsserver",
 		"rust_analyzer",
 	},
 })
@@ -179,6 +178,23 @@ lspconfig.rust_analyzer.setup({
         }
     }
 })
+
+-- Configure diagnostic display
+vim.diagnostic.config({
+  float = {
+    border = "rounded",
+    source = "always",
+    header = "",
+    prefix = "",
+    width = 50,  -- Adjust this value to your preference
+    max_width = 60,  -- Maximum width of floating window
+  },
+})
+
+-- Keybind to show diagnostics in a floating window
+vim.keymap.set('n', '<leader>e', function()
+  vim.diagnostic.open_float({ scope = "line" })
+end)
 
 vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
 vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
