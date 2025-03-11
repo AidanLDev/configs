@@ -1,0 +1,21 @@
+[Unit]
+Description=OneDrive mount with rclone
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=aidan
+ExecStart=/usr/bin/rclone mount onedrive:/ %h/OneDrive \
+  --vfs-cache-mode full \
+  --vfs-cache-max-age 24h \
+  --dir-cache-time 24h \
+  --buffer-size 128M
+ExecStop=/bin/fusermount -u %h/OneDrive
+Restart=on-failure
+RestartSec=30
+StartLimitInterval=60s
+StartLimitBurst=3
+
+[Install]
+WantedBy=default.target
