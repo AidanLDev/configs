@@ -19,3 +19,12 @@ StartLimitBurst=3
 
 [Install]
 WantedBy=default.target
+
+# How to run this service
+# 0. Ensure User=<value> is correct for the system you're using
+# 1. Save file to ~/.config/systemd/user/onedrive-rclone.service
+# 2. systemctl --user daemon-reload
+# 3. systemctl --user enable onedrive-rclone
+# 4. systemctl --user start onedrive-rclone
+
+# Check if the system is running systemctl --user status onedrive-rclone
