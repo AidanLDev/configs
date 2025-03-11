@@ -113,19 +113,20 @@ vim.cmd("set shiftwidth=2")
 local builtin = require("telescope.builtin")
 vim.keymap.set("n", "<C-p>", builtin.find_files, { desc = "Telescope find files" })
 require("telescope").setup({
-	defaults = {
-		file_ignore_patterns = {
-			"node_modules",
-			"dist",
-			"build",
-			".next",
-		},
-	},
-	extentions = {
-		["ui-select"] = {
-			require("telescope.themes").get_dropdown({}),
-		},
-	},
+  defaults = {
+    file_ignore_patterns = {
+      "node_modules",
+      "dist",
+      "build",
+      ".next",
+    },
+    hidden = true,
+  },
+  extentions = {
+    ["ui-select"] = {
+      require("telescope.themes").get_dropdown({}),
+    },
+  },
 })
 
 require("telescope").load_extension("ui-select")
@@ -133,28 +134,36 @@ require("telescope").load_extension("ui-select")
 -- Treesitter Config
 local config = require("nvim-treesitter.configs")
 config.setup({
-	auto_install = true,
-	highlight = { enabled = true },
-	indent = { enabled = true },
+  auto_install = true,
+  highlight = { enabled = true },
+  indent = { enabled = true },
 })
 
 -- Neo-tree config
 vim.keymap.set("n", "<C-b>", ":Neotree filesystem reveal right<CR>")
+require("neo-tree").setup({
+  filesystem = {
+    filtered_items = {
+      visible = true,
+      hide_dotfiles = false,
+    }
+  }
+})
 
 -- Lualine config
 require("lualine").setup({
-	options = {
-		theme = "dracula",
-	},
+  options = {
+    theme = "dracula",
+  },
 })
 
 -- LSP Config
 require("mason").setup()
 require("mason-lspconfig").setup({
-	ensure_installed = {
-		"lua_ls",
-		"rust_analyzer",
-	},
+  ensure_installed = {
+    "lua_ls",
+    "rust_analyzer",
+  },
 })
 
 
@@ -164,19 +173,19 @@ local lspconfig = require("lspconfig")
 lspconfig.lua_ls.setup({})
 lspconfig.ts_ls.setup({})
 lspconfig.rust_analyzer.setup({
-    capabilities = capabilities,
-    settings = {
-        ['rust-analyzer'] = {
-            checkOnSave = {
-                command = "clippy"
-            },
-            completion = {
-                postfix = {
-                    enable = true,
-                },
-            },
-        }
+  capabilities = capabilities,
+  settings = {
+    ['rust-analyzer'] = {
+      checkOnSave = {
+        command = "clippy"
+      },
+      completion = {
+        postfix = {
+          enable = true,
+        },
+      },
     }
+  }
 })
 
 -- Configure diagnostic display
@@ -186,8 +195,8 @@ vim.diagnostic.config({
     source = "always",
     header = "",
     prefix = "",
-    width = 50,  -- Adjust this value to your preference
-    max_width = 60,  -- Maximum width of floating window
+    width = 50,     -- Adjust this value to your preference
+    max_width = 60, -- Maximum width of floating window
   },
 })
 
@@ -207,11 +216,11 @@ vim.cmd([[autocmd BufWritePre *.ts,*.tsx,*.js,*.jsx lua vim.lsp.buf.format()]])
 -- None ls set-up
 local null_ls = require("null-ls")
 null_ls.setup({
-	sources = {
-		null_ls.builtins.formatting.stylua,
-		null_ls.builtins.formatting.prettier,
-		null_ls.builtins.formatting.rustfmt,
-	},
+  sources = {
+    null_ls.builtins.formatting.stylua,
+    null_ls.builtins.formatting.prettier,
+    null_ls.builtins.formatting.rustfmt,
+  },
 })
 
 vim.keymap.set("n", "<leader>pi", ":PlugInstall <CR>")
@@ -264,5 +273,3 @@ cmp.setup({
     { name = "buffer" },
   }),
 })
-
-
