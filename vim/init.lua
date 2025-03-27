@@ -45,6 +45,9 @@ Plug("L3MON4D3/LuaSnip")
 Plug("saadparwaiz1/cmp_luasnip")
 Plug("rafamadriz/friendly-snippets")
 
+-- Highlight colours
+Plug("rrethy/vim-hexokinase", { ["do"] = ":make hexokinase" })
+
 vim.call("plug#end")
 
 -- Enable syntax highlighting
@@ -273,3 +276,7 @@ cmp.setup({
     { name = "buffer" },
   }),
 })
+
+-- Enable Hexokinase (the colour highlighter)
+vim.g.Hexokinase_highlighters = { 'backgroundfull' }
+
