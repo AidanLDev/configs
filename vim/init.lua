@@ -166,6 +166,7 @@ require("mason-lspconfig").setup({
   ensure_installed = {
     "lua_ls",
     "rust_analyzer",
+    "tailwindcss",
   },
 })
 
@@ -189,6 +190,9 @@ lspconfig.rust_analyzer.setup({
       },
     }
   }
+})
+lspconfig.tailwindcss.setup({
+  capabilities = capabilities
 })
 
 -- Configure diagnostic display
