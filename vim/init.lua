@@ -170,7 +170,7 @@ require("mason-lspconfig").setup({
     "lua_ls",
     "rust_analyzer",
     "tailwindcss",
-    "sonarlint",
+    "eslint",
   },
 })
 
@@ -207,36 +207,11 @@ lspconfig.tailwindcss.setup({
   capabilities = capabilities
 })
 
--- /usr/bin/java
--- Run the below command to find the path to your Java and Node installation
-local node_path = vim.fn.trim(vim.fn.system("which node"))
--- local java_path = vim.fn.trim(vim.fn.system("which java"))
-
--- Configure SonarLint
-lspconfig.sonarlint.setup({
-  capabilities = capabilities,
-  cmd = { "sonarlint-language-server", "-stdio" },
-  filetypes = {
-    "javascript",
-    "typescript",
-    "typescriptreact", -- Next.js & React (TS)
-    "javascriptreact", -- Next.js & React (JS)
-    "rust",
-    "go",
-   },
-  settings = {
-    sonarlint = {
-      rules = {
-        ["javascript:S100"] = { level = "off" }, -- Example: Disable a specific rule
-      },
-      pathToNodeExecutable = node_path, -- Adjust this if necessary
-      pathToJavaExecutable = "/usr/bin/java", -- Adjust this if necessary
-      analysisProperties = {
-        ["sonar.typescript.tsconfigPaths"] = "tsconfig.json",
-      },
-    },
-  },
+-- Configure eslint
+lspconfig.eslint.setup({
+  capabilities = capabilities
 })
+
 -- Configure diagnostic display
 vim.diagnostic.config({
   float = {
