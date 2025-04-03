@@ -48,6 +48,9 @@ Plug("rafamadriz/friendly-snippets")
 -- Highlight colours
 Plug("rrethy/vim-hexokinase", { ["do"] = ":make hexokinase" })
 
+-- Github copilot
+Plug("github/copilot.vim")
+
 vim.call("plug#end")
 
 -- Enable syntax highlighting
@@ -167,6 +170,7 @@ require("mason-lspconfig").setup({
     "lua_ls",
     "rust_analyzer",
     "tailwindcss",
+    "sonarlint",
   },
 })
 
@@ -174,8 +178,14 @@ require("mason-lspconfig").setup({
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 local lspconfig = require("lspconfig")
+
+-- Configure Lua Language Server
 lspconfig.lua_ls.setup({})
+
+-- Configure TypeScript Language Server
 lspconfig.ts_ls.setup({})
+
+-- Configure Rust Analyzer
 lspconfig.rust_analyzer.setup({
   capabilities = capabilities,
   settings = {
@@ -191,10 +201,42 @@ lspconfig.rust_analyzer.setup({
     }
   }
 })
+
+-- Configure Tailwind CSS
 lspconfig.tailwindcss.setup({
   capabilities = capabilities
 })
 
+-- /usr/bin/java
+-- Run the below command to find the path to your Java and Node installation
+local node_path = vim.fn.trim(vim.fn.system("which node"))
+-- local java_path = vim.fn.trim(vim.fn.system("which java"))
+
+-- Configure SonarLint
+lspconfig.sonarlint.setup({
+  capabilities = capabilities,
+  cmd = { "sonarlint-language-server", "-stdio" },
+  filetypes = {
+    "javascript",
+    "typescript",
+    "typescriptreact", -- Next.js & React (TS)
+    "javascriptreact", -- Next.js & React (JS)
+    "rust",
+    "go",
+   },
+  settings = {
+    sonarlint = {
+      rules = {
+        ["javascript:S100"] = { level = "off" }, -- Example: Disable a specific rule
+      },
+      pathToNodeExecutable = node_path, -- Adjust this if necessary
+      pathToJavaExecutable = "/usr/bin/java", -- Adjust this if necessary
+      analysisProperties = {
+        ["sonar.typescript.tsconfigPaths"] = "tsconfig.json",
+      },
+    },
+  },
+})
 -- Configure diagnostic display
 vim.diagnostic.config({
   float = {
@@ -284,3 +326,6 @@ cmp.setup({
 -- Enable Hexokinase (the colour highlighter)
 vim.g.Hexokinase_highlighters = { 'backgroundfull' }
 
+-- Copilot set-up
+vim.g.copilot_no_tab_map = true
+vim.api.nvim_set_keymap("i", "<C-a>", 'copilot#Accept("<CR>")', { expr = true, silent = true, noremap = true})
