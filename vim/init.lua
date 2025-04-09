@@ -51,6 +51,9 @@ Plug("rrethy/vim-hexokinase", { ["do"] = ":make hexokinase" })
 -- Github copilot
 Plug("github/copilot.vim")
 
+-- Augment code (AI agent thing)
+Plug("augmentcode/augment.vim")
+
 vim.call("plug#end")
 
 -- Enable syntax highlighting
@@ -303,4 +306,4 @@ vim.g.Hexokinase_highlighters = { 'backgroundfull' }
 
 -- Copilot set-up
 vim.g.copilot_no_tab_map = true
-vim.api.nvim_set_keymap("i", "<C-a>", 'copilot#Accept("<CR>")', { expr = true, silent = true, noremap = true})
+vim.api.nvim_set_keymap("i", "<C-a>", 'copilot#Accept("<CR>")', { expr = true, silent = true, noremap = true })
