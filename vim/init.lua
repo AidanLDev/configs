@@ -49,7 +49,7 @@ Plug("rafamadriz/friendly-snippets")
 Plug("rrethy/vim-hexokinase", { ["do"] = ":make hexokinase" })
 
 -- Github copilot
-Plug("github/copilot.vim")
+-- Plug("github/copilot.vim")
 
 -- Augment code (AI agent thing)
 Plug("augmentcode/augment.vim")
@@ -307,4 +307,8 @@ vim.g.Hexokinase_highlighters = { 'backgroundfull' }
 -- Copilot set-up
 vim.g.copilot_no_tab_map = true
 vim.g.copilot_assume_mapped = true
+vim.g.copilot_no_maps = true           -- Disable all default mappings
+vim.g.copilot_quiet = true             -- Suppress all notifications
+vim.g.copilot_suppress_completions = true -- Suppress completions when quota hi
 vim.api.nvim_set_keymap("i", "<C-a>", 'copilot#Accept("<CR>")', { expr = true, silent = true, noremap = true })
+

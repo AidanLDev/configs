@@ -5,7 +5,7 @@ Wants=network-online.target
 
 [Service]
 Type=simple
-User=aidan
+# User=aidan
 ExecStart=/usr/bin/rclone mount onedrive:/ %h/OneDrive \
   --vfs-cache-mode full \
   --vfs-cache-max-age 24h \
@@ -28,3 +28,4 @@ WantedBy=default.target
 # 4. systemctl --user start onedrive-rclone
 
 # Check if the system is running systemctl --user status onedrive-rclone
+
