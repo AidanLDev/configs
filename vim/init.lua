@@ -314,3 +314,13 @@ vim.g.copilot_quiet = true             -- Suppress all notifications
 vim.g.copilot_suppress_completions = true -- Suppress completions when quota hi
 vim.api.nvim_set_keymap("i", "<C-a>", 'copilot#Accept("<CR>")', { expr = true, silent = true, noremap = true })
 
+-- Auto-save when leaving insert mode or after text change
+vim.api.nvim_create_autocmd({ "InsertLeave", "TextChanged" }, {
+  pattern = "*",
+  callback = function()
+    if vim.bo.modified and vim.bo.filetype ~= "" and vim.fn.expand('%') ~= "" then
+      vim.cmd("silent! write")
+    end
+  end,
+})
+
