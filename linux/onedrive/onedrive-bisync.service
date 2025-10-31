@@ -1,20 +1,16 @@
 [Unit]
 Description=Two-way sync for OneDrive with rclone bisync
-After=network-online.target onedrive-rclone.service
+After=network-online.target
 Wants=network-online.target
-Requires=onedrive-rclone.service
 
 [Service]
 Type=oneshot
-# Check if OneDrive is mounted before proceeding
-ExecStartPre=/bin/bash -c 'if [ ! -d %h/OneDrive ]; then echo "OneDrive not mounted" && exit 1; fi'
-# Initialize bisync on first run (required for rclone bisync)
-ExecStartPre=/bin/bash -c 'if [ ! -f %h/.config/rclone/onedrive-bisync-initialized ]; then /usr/bin/rclone bisync onedrive:/ %h/OneDrive --resync && touch %h/.config/rclone/onedrive-bisync-initialized; fi'
-# Run the actual bisync
-ExecStart=/usr/bin/rclone bisync onedrive:/ %h/OneDrive --progress --log-file=%h/.config/rclone/onedrive-bisync.log
-# Mark completion
+TimeoutStartSec=infinity
+ExecStart=/usr/bin/flock -n /run/user/%U/onedrive-bisync.lock /usr/bin/rclone bisync onedrive:/ %h/OneDrive.local --cache-dir=%h/.cache/rclone --log-file=%h/.config/rclone/onedrive-bisync.log --filter-from=%h/.config/rclone/onedrive-bisync.filter
 ExecStartPost=/usr/bin/touch %h/.config/rclone/onedrive-last-sync
-RemainAfterExit=yes
+RemainAfterExit=no
 
 [Install]
-WantedBy=default.target
+WantedBy=timers.target
+
+

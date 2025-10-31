@@ -1,11 +1,10 @@
 [Unit]
-Description=Run OneDrive bisync every 5 minutes
+Description=Run onedrive-bisync.service every 15 minutes
 
 [Timer]
-OnBootSec=2m
-OnUnitActiveSec=5m
+OnCalendar=*:0/15
 Persistent=true
+AccuracySec=1min
 
 [Install]
 WantedBy=timers.target
-

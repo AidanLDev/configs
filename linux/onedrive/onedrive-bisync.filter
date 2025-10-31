@@ -1,0 +1,6 @@
+# exclude Personal Vault directory and its contents
+- Personal Vault/**
+- Personal Vault
+# add other excludes here if needed
+
+# Put this file in /.config/rclone
