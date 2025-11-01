@@ -6,8 +6,8 @@ Wants=network-online.target
 [Service]
 Type=oneshot
 TimeoutStartSec=infinity
-ExecStart=/usr/bin/flock -n /run/user/%U/onedrive-bisync.lock /usr/bin/rclone bisync onedrive:/ %h/OneDrive.local --cache-dir=%h/.cache/rclone --log-file=%h/.config/rclone/onedrive-bisync.log --filter-from=%h/.config/rclone/onedrive-bisync.filter
-ExecStartPost=/usr/bin/touch %h/.config/rclone/onedrive-last-sync
+ExecStart=/usr/bin/flock -n /run/user/%U/onedrive-bisync.lock /usr/bin/rclone bisync onedrive:/ /home/aidan/OneDrive.local --cache-dir=/home/aidan/.cache/rclone --log-file=/home/aidan/.config/rclone/onedrive-bisync.log --filter-from=/home/aidan/.config/rclone/onedrive-bisync.filter
+ExecStartPost=/usr/bin/touch /home/aidan/.config/rclone/onedrive-last-sync
 RemainAfterExit=no
 
 [Install]
