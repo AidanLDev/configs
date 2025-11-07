@@ -1,0 +1,15 @@
+[Unit]
+Description=SSH Agent (user)
+After=network.target
+
+[Service]
+Type=forking
+# socket in runtime dir so it's per-session and cleaned automatically
+Environment=SSH_AUTH_SOCK=%t/ssh-agent.socket
+ExecStart=/usr/bin/ssh-agent -a $SSH_AUTH_SOCK
+ExecStartPost=/usr/bin/sleep 0.2
+# add your key (change filename if needed)
+ExecStartPost=/usr/bin/ssh-add %h/.ssh/id_ed25519_github
+
+[Install]
+WantedBy=default.target
