@@ -12,7 +12,11 @@ ExecStart=/usr/bin/rclone mount onedrive:/ %h/OneDrive-mount \
   --dir-cache-time 24h \
   --buffer-size 128M
 # Run a bisync before stopping/unmounting the mount (uses flock lock)
-ExecStopPre=/usr/bin/flock -n /run/user/%U/onedrive-bisync.lock /usr/bin/rclone bisync onedrive:/ %h/OneDrive.local --cache-dir=%h/.cache/rclone --log-file=%h/.config/rclone/onedrive-bisync.log
+ExecStopPre=/usr/bin/flock -n /run/user/%U/onedrive-bisync.lock /usr/bin/rclone bisync onedrive:/ %h/OneDrive.local \
+  --recover \
+  --resilient \
+  --cache-dir=%h/.cache/rclone \
+  --log-file=%h/.config/rclone/onedrive-bisync.log
 # allow the bisync time to finish during shutdown
 TimeoutStopSec=6min
 ExecStop=/bin/fusermount -u %h/OneDrive-mount
